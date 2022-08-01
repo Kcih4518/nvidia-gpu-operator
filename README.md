@@ -1,7 +1,7 @@
 # Ansible Role: Keepalived
 
 [![CI](https://github.com/geerlingguy/ansible-role-haproxy/workflows/CI/badge.svg?event=push)](https://github.com/Kcih4518/nvidia-gpu-operator/actions?query=workflow%3ACI)
-[![Ansible Galaxy](https://img.shields.io/badge/ansible--galaxy-gpu-blue.svg)](https://galaxy.ansible.com/Oefenweb/haproxy)
+[![Ansible Galaxy](https://img.shields.io/badge/ansible--galaxy-gpu-blue.svg)](https://galaxy.ansible.com/kcih4518/nvidia_gpu_operator)
 
 Helm installs Nvidia-GPU-operator for kubernetes on Ubuntu Linux servers.
 
@@ -21,7 +21,7 @@ Available variables are listed below, along with default values (see `defaults/m
     - hosts: kubernetes-master
       become: true
       roles:
-        - { role: kcih4518.nvidia-gpu-operator }
+        - { role: kcih4518.nvidia_gpu_operator }
 
 ## Author Information
 
