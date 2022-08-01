@@ -1,0 +1,9 @@
+---
+skip_list:
+    - 'yaml'
+    - 'role-name'
+
+warn_list:
+    - experimental
+    - package-latest
+    - yaml  Violations
