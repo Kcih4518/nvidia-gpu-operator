@@ -1,0 +1,20 @@
+---
+dependencies: []
+
+galaxy_info:
+    author: Avery_Yang
+    description: Helm install nvidia-gpu-operator
+    company: 'ASUS OCIS'
+    license: license (GPL-2.0-or-later, MIT)
+    min_ansible_version: '2.1'
+    platforms:
+        - name: Ubuntu
+          versions:
+              - all
+    galaxy_tags:
+        - gpu
+        - cloud
+        - nfd
+        - nvidia
+        - gpu-operator
+        - kubernetes

@@ -1,0 +1,10 @@
+---
+# defaults file for nvidia-gpu-operator
+# Helm environments
+helm_bin_path: /usr/local/bin/helm
+
+# nvidia-gpu-operator values.yaml
+pre_installed_gpu_drivers: true
+nfd_enable: true
+## mig_strategy can be: mixed、single、none
+mig_strategy: mixed

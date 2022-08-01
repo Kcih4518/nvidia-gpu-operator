@@ -1,0 +1,45 @@
+---
+# tasks file for nvidia-gpu-operator
+- name: Check if Helm binary exists.
+  ansible.builtin.stat:
+      path: '{{ helm_bin_path }}'
+  register: helm_check
+
+- name: Print a debug message
+  ansible.builtin.debug:
+      msg: "Helm isn't install (path doesn't exist)"
+  when: helm_check.stat.exists is not defined
+
+- name: Add nvidia-gpu-operator helm repo
+  kubernetes.core.helm_repository:
+      name: nvidia
+      repo_url: 'https://helm.ngc.nvidia.com/nvidia'
+  when: helm_check.stat.exists is defined
+
+- name: Gather information of nvidia-gpu-operator
+  kubernetes.core.helm_info:
+      name: gpu-operator
+      release_namespace: gpu-operator
+
+- name: Installing nvidia-gpu-operator
+  kubernetes.core.helm:
+      name: 'gpu-operator'
+      namespace: gpu-operator
+      chart_ref: nvidia/gpu-operator
+      release_namespace: gpu-operator
+      create_namespace: true
+      wait: true
+      values:
+          driver:
+              enabled: '{{ pre_installed_gpu_drivers }}'
+          nfd:
+              enabled: '{{ nfd_enable }}'
+          mig:
+              strategy: '{{ mig_strategy }}'
+      register: helm_deployed
+  when: helm_check.stat.exists is defined
+
+- name: Installing nvidia-gpu-operator result
+  ansible.builtin.debug:
+      var: helm_deployed
+      verbosity: 2
